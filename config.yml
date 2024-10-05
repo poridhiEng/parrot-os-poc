@@ -11,10 +11,11 @@ spec:
       name: weaveworks/ignite-kernel:5.10.51
   cpus: 2
   memory: 2GB
-  ports:
-    - hostPort: 80
-      vmPort: 80
-    - hostPort: 5901
-      vmPort: 5901
+  network:
+    ports:
+      - hostPort: 80
+        vmPort: 80
+      - hostPort: 5901
+        vmPort: 5901
   ssh: true
   networkPlugin: cni
