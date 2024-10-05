@@ -1,7 +1,7 @@
 # Variables
 IMAGE_NAME = parrotos-novnc
 DOCKER_USER = sagoresarker
-TAG = latest
+TAG = 3.0.0
 
 build:
 	docker build -t $(IMAGE_NAME):$(TAG) .
@@ -24,7 +24,7 @@ clean-cache:
 
 help:
 	@echo "Makefile commands:"
-	@echo "  build        - Build the Docker image"
+	@echo "  build        - Build the Docker image" ignite rm -f $(ignite ps -aq)
 	@echo "  run          - Run the Docker container"
 	@echo "  clean        - Stop and remove all containers"
 	@echo "  clean-image  - Remove the Docker image"
