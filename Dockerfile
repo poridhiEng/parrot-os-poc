@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y \
     supervisor \
     git \
     python3-pip \
+    lxde-core \
+    lxterminal \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -18,11 +20,15 @@ RUN git clone https://github.com/novnc/noVNC.git /opt/novnc \
     && ln -s /opt/novnc/vnc.html /opt/novnc/index.html
 
 # Set up VNC password
-RUN mkdir -p ~/.vnc && x11vnc -storepasswd root ~/.vnc/passwd
+RUN mkdir -p ~/.vnc && x11vnc -storepasswd your_vnc_password ~/.vnc/passwd
 
 # Copy configuration files
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY nginx.conf /etc/nginx/nginx.conf
+
+# Create a script to start LXDE
+RUN echo "#!/bin/sh\nstartlxde &" > /usr/bin/start-desktop.sh \
+    && chmod +x /usr/bin/start-desktop.sh
 
 # Set correct permissions
 RUN chmod 644 /etc/supervisor/conf.d/supervisord.conf \
