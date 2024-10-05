@@ -1,0 +1,20 @@
+apiVersion: ignite.weave.works/v1alpha2
+kind: VM
+metadata:
+  name: parrotos-novnc-vm
+spec:
+  image:
+    ociClaimRef:
+      name: sagoresarker/parrotos-novnc:3.0.0
+  kernel:
+    ociClaimRef:
+      name: weaveworks/ignite-kernel:5.10.51
+  cpus: 2
+  memory: 2GB
+  ports:
+    - hostPort: 80
+      vmPort: 80
+    - hostPort: 5901
+      vmPort: 5901
+  ssh: true
+  networkPlugin: cni

@@ -21,7 +21,7 @@ RUN git clone https://github.com/novnc/noVNC.git /opt/novnc \
     && ln -s /opt/novnc/vnc.html /opt/novnc/index.html
 
 # Set up VNC password
-RUN mkdir -p ~/.vnc && x11vnc -storepasswd your_vnc_password ~/.vnc/passwd
+RUN mkdir -p ~/.vnc && x11vnc -storepasswd root ~/.vnc/passwd
 
 # Configure SSH
 RUN mkdir -p /var/run/sshd && \
