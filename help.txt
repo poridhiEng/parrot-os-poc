@@ -1,0 +1,7 @@
+sudo cp parrotos_nginx.conf /etc/nginx/conf.d/
+
+# Test the Nginx configuration
+sudo nginx -t
+
+# If the test is successful, reload Nginx
+sudo systemctl reload nginx
