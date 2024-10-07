@@ -8,4 +8,4 @@ spec:
   image:
     oci: poridhi/parrotos-novnc:1.0.0
   kernel:
-    oci: poridhi/parrotos-novnc:1.0.0
+    oci: weaveworks/ignite-kernel:5.10.51
