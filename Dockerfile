@@ -33,10 +33,28 @@ RUN echo "#!/bin/sh\nstartlxde &" > /usr/bin/start-desktop.sh \
 RUN chmod 644 /etc/supervisor/conf.d/supervisord.conf \
     && chmod 644 /etc/nginx/nginx.conf
 
-RUN echo '#!/bin/sh\n\
+# Create a startup script that ensures SSH is always running
+RUN echo '#!/bin/bash\n\
+start_ssh() {\n\
+    /usr/sbin/sshd\n\
+    echo "Started SSH server"\n\
+}\n\
+\n\
+check_ssh() {\n\
+    if ! pgrep sshd > /dev/null\n\
+    then\n\
+        echo "SSH server is not running. Starting it..."\n\
+        start_ssh\n\
+    fi\n\
+}\n\
+\n\
+start_ssh\n\
 /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf &\n\
-/usr/sbin/sshd\n\
-tail -f /dev/null' > /init.sh && chmod +x /init.sh
+\n\
+while true; do\n\
+    check_ssh\n\
+    sleep 30\n\
+done' > /init.sh && chmod +x /init.sh
 
 EXPOSE 80 5900 6080 22
 

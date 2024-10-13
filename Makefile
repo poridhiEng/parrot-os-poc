@@ -1,7 +1,7 @@
 # Variables
 IMAGE_NAME = parrotos-novnc
 DOCKER_USER = poridhi
-TAG = 1.0.0
+TAG = 1.1.0
 
 build:
 	docker build -t $(IMAGE_NAME):$(TAG) .

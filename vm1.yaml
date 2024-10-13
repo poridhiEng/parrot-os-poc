@@ -1,0 +1,11 @@
+apiVersion: ignite.weave.works/v1alpha4
+kind: VM
+metadata:
+  name: node7
+spec:
+  image:
+    oci: sagoresarker/parrotos-novnc-testing-poc:1.0.2
+  cpus: 2
+  diskSize: 30GB
+  memory: 2GB
+  ssh: true
